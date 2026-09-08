@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OnSET Deutsch Lückentext Simulation - Verkehr</title>
+  <title>OnSET Deutsch Lückentext Simulation - AFD & Politik</title>
   <style>
     :root {
       --primary: #0056b3;
@@ -307,14 +307,14 @@
   <!-- 1. HALAMAN AWAL -->
   <div id="start-screen">
     <h1>OnSET Deutsch</h1>
-    <div class="subtitle">Lückentext – Verkehr (Niveau: B1–B2)</div>
+    <div class="subtitle">Lückentext – Alternative für Deutschland (AFD)</div>
 
     <div class="info-card">
       <strong>Informationen zum Übungstest:</strong>
       <ul style="margin-left: 20px; margin-top: 8px;">
         <li>Anzahl der Lücken: 20</li>
         <li>Zeit: 5 Minuten</li>
-        <li>Thema: Verkehr in deutschen Städten</li>
+        <li>Thema: Die AfD und die deutsche Politiklandschaft (B1–B2)</li>
       </ul>
     </div>
 
@@ -335,7 +335,7 @@
     <div class="sticky-header">
       <div class="participant-info">
         <span id="display-name"></span><br>
-        <small style="color: var(--text-muted);">Thema: Verkehr | B1–B2</small>
+        <small style="color: var(--text-muted);">Thema: AfD & Politik | B1–B2</small>
       </div>
       <div class="timer-badge" id="timer">Zeit: 05:00</div>
     </div>
@@ -377,48 +377,44 @@
 </div>
 
 <script>
-  // DATA SOAL (20 Lücken)
-  // Setiap item berisi:
-  // word: kata lengkap
-  // explanation: penjelasan grammar/wortschatz/konteks dalam Bahasa Indonesia
+  // DATA SOAL (20 Lücken) Tema: AfD (Alternative für Deutschland)
   const gappedWordsData = [
-    { word: "Verkehr", explanation: "Kata benda 'Verkehr' berarti lalu lintas. Jumlah huruf 8 (genap) → 4 terlihat (Verk) + 4 rumpang (ehr)." },
-    { word: "immer", explanation: "Kata keterangan (Adverb) 'immer' berarti selalu, membentuk frasa 'immer mehr' (semakin banyak)." },
-    { word: "Autos", explanation: "Bentuk jamak dari 'das Auto' adalah 'die Autos' (mobil-mobil)." },
-    { word: "Straßen", explanation: "Bentuk jamak dari 'die Straße' adalah 'die Straßen' (jalan-jalan)." },
-    { word: "obwohl", explanation: "Subjunktion 'obwohl' (meskipun) digunakan untuk membuat Nebensatz yang menyatakan pertentangan." },
-    { word: "viele", explanation: "Indefinitpronomen 'viele' (banyak) menerangkan kata benda jamak 'Menschen'." },
-    { word: "Angebote", explanation: "Bentuk jamak dari 'das Angebot' adalah 'die Angebote' (penawaran/layanan)." },
-    { word: "Busse", explanation: "Bentuk jamak dari 'der Bus' adalah 'die Busse' (bus-bus)." },
-    { word: "Bahnen", explanation: "Bentuk jamak dari 'die Bahn' adalah 'die Bahnen' (kereta-kereta)." },
-    { word: "nutzen", explanation: "Kata kerja 'nutzen' (menggunakan). Konjugasi Plural (sie/viele Menschen) dalam Present Tense (Präsens)." },
-    { word: "sondern", explanation: "Pasangan konjungsi 'nicht nur ..., sondern auch ...' (tidak hanya ..., tetapi juga ...)." },
-    { word: "Radwege", explanation: "Kata majemuk (Komposita) 'die Radwege' (jalur sepeda), jamak dari 'der Radweg'." },
-    { word: "gebaut", explanation: "Bentuk Partizip II dari kata kerja 'bauen'. Menerangkan Passiv 'werden gebaut' (dibangun)." },
-    { word: "Sicherheit", explanation: "Kata benda 'die Sicherheit' (keselamatan/keamanan). Menerangkan tujuan pembangunan jalur sepeda." },
-    { word: "Radfahrer", explanation: "Kata benda jamak 'die Radfahrer' (pesepeda)." },
-    { word: "E-Scooter", explanation: "Kata benda 'E-Scooter' (skuter listrik), contoh sarana transportasi modern di kota." },
-    { word: "App", explanation: "Kata benda 'die App' (aplikasi mobile), digunakan dalam konteks Digitalisierung." },
-    { word: "buchen", explanation: "Kata kerja 'buchen' (memesan/membooking tiket secara digital)." },
-    { word: "Nachhaltigkeit", explanation: "Kata benda 'die Nachhaltigkeit' (keberlanjutan/ramah lingkungan)." },
-    { word: "Zukunft", explanation: "Kata benda 'die Zukunft' (masa depan). Dalam frasa 'in der Zukunft' (di masa depan)." }
+    { word: "Partei", explanation: "Kata benda 'die Partei' (partai politik). Terdiri dari 6 huruf (3 terlihat + 3 rumpang)." },
+    { word: "gegründet", explanation: "Partizip II dari 'gründen' (didirikan) untuk membentuk kalimat passiv 'wurde gegründet'." },
+    { word: "Zuerst", explanation: "Adverb 'zuerst' (pada awalnya) untuk menunjukkan urutan kronologis waktu." },
+    { word: "gegen", explanation: "Präposition dengan Akkusativ 'gegen' (melawan/terhadap)." },
+    { word: "später", explanation: "Adverb 'später' (kemudian/nanti), menyatakan perubahan fokus seiring waktu." },
+    { word: "Themen", explanation: "Bentuk jamak dari 'das Thema' yaitu 'die Themen' (tema-tema/isu-isu)." },
+    { word: "Migration", explanation: "Kata benda 'die Migration' (migrasi), isu utama dalam wacana politik AfD." },
+    { word: "Sicherheit", explanation: "Kata benda 'die Sicherheit' (keamanan)." },
+    { word: "viele", explanation: "Indefinitpronomen 'viele' (banyak) untuk mengacu pada jumlah pemilih (Wähler)." },
+    { word: "weil", explanation: "Subjunktion 'weil' (karena) untuk menjelaskan alasan (membentuk Nebensatz dengan kata kerja di akhir)." },
+    { word: "unzufrieden", explanation: "Adjektiv 'unzufrieden' (tidak puas) untuk menggambarkan kondisi pemilih terhadap pemerintah." },
+    { word: "Politik", explanation: "Kata benda 'die Politik' (politik/kebijakan)." },
+    { word: "Bundestag", explanation: "Kata benda 'der Bundestag' (Parlemen Federal Jerman)." },
+    { word: "vertreten", explanation: "Partizip II dari 'vertreten' (diwakili/diwakilkan) dalam bentuk Passiv 'ist vertreten'." },
+    { word: "Kontroversen", explanation: "Bentuk jamak dari 'die Kontroverse' yaitu 'die Kontroversen' (kontroversi-kontroversi)." },
+    { word: "Kritiker", explanation: "Kata benda 'die Kritiker' (para pengkritik/kecaman)." },
+    { word: "Positionen", explanation: "Bentuk jamak 'die Positionen' (posisi/pandangan politik)." },
+    { word: "Gefahr", explanation: "Kata benda 'die Gefahr' (bahaya) dalam frasa 'eine Gefahr für die Demokratie'." },
+    { word: "Demokratie", explanation: "Kata benda 'die Demokratie' (demokrasi)." },
+    { word: "Zukunft", explanation: "Kata benda 'die Zukunft' (masa depan) dalam frasa 'in der Zukunft' (di masa depan)." }
   ];
 
-  // TEKS BACAAN UTUH DENGAN PLACEHOLDER %L%
-  const fullTextTemplate = `Der tägliche %L% (1) in deutschen Großstädten stellt eine erhebliche Herausforderung dar. Da %L% (2) mehr Menschen mit ihren eigenen %L% (3) zur Arbeit fahren, sind die %L% (4) zur Hauptverkehrszeit oft komplett verstopft. Dies geschieht, %L% (5) es eigentlich %L% (6) attraktive %L% (7) des öffentlichen Nahverkehrs gibt. 
+  // TEKS BACAAN UTUH TENTANG AFD DENGAN PLACEHOLDER %L%
+  const fullTextTemplate = `Die Alternative für Deutschland (AfD) ist eine politische %L% (1) in Deutschland, die im Jahr 2013 %L% (2) wurde. %L% (3) richtete sich ihr Protest hauptsächlich %L% (4) die europäische Währungspolitik. Einige Jahre %L% (5) verschob sich der Schwerpunkt jedoch auf %L% (6) wie die %L% (7) und die innere %L% (8). 
 
-Viele Stadtbewohner könnten problemlos %L% (8) und %L% (9) für ihren täglichen Weg %L% (10). Um den Autoverkehr zu reduzieren, investieren die Städte nicht nur in den Ausbau der Bahnen, %L% (11) auch in neue %L% (12). Diese werden kontinuierlich %L% (13), um die %L% (14) für alle %L% (15) im Straßenverkehr zu erhöhen. 
+In den letzten Jahren konnte die Partei %L% (9) Wähler gewinnen, %L% (10) manche Bürger mit der aktuellen %L% (11) der etablierten Parteien %L% (12) sind. Mittlerweile ist die AfD sowohl im Deutschen %L% (13) als auch in vielen Landesparlamenten %L% (14). 
 
-Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zunehmend an Bedeutung. Dank der Digitalisierung kann man heute per %L% (17) ganz einfach ein passendes Verkehrsmittel finden und direkt %L% (18). Eine umweltfreundliche Mobilität und %L% (19) spielen eine zentrale Rolle, damit die Städte auch in der %L% (20) lebenswert bleiben.`;
+Die Entwicklung der Partei führt jedoch zu scharfen %L% (15). Viele %L% (16) werfen der AfD vor, dass einige ihrer %L% (17) eine %L% (18) für die %L% (19) darstellen. Wie sich das Parteiensystem in der %L% (20) entwickeln wird, bleibt eine zentrale Frage der deutschen Politik.`;
 
   let timerInterval;
-  let timeLeft = 300; // 5 menit dalam detik
+  let timeLeft = 300;
   let participantName = "";
 
   // FUNGSI UTAMA UNTUK MENGHITUNG BAGIAN TERLIHAT & RUMPANG
   function processWord(word) {
     const totalLength = word.length;
-    // Visible length: Math.floor(word.length / 2)
     const visibleLength = Math.floor(totalLength / 2);
     const visiblePart = word.substring(0, visibleLength);
     const missingPart = word.substring(visibleLength);
@@ -436,7 +432,6 @@ Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zuneh
     participantName = nameInput;
     document.getElementById("display-name").innerText = "Teilnehmer/in: " + participantName;
 
-    // Switch View
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("test-screen").style.display = "block";
 
@@ -449,14 +444,12 @@ Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zuneh
     let textContainer = document.getElementById("text-content");
     let gapIndex = 0;
 
-    // Replace %L% dengan HTML Rumpang
     let renderedHTML = fullTextTemplate.replace(/%L%/g, function() {
       const data = gappedWordsData[gapIndex];
       const processed = processWord(data.word);
       const gapNumber = gapIndex + 1;
       
       const missingLength = processed.missingPart.length;
-      // Dynamic width calculation based on character length for desktop & mobile
       const inputWidthClass = `width: ${Math.max(missingLength * 13 + 8, 30)}px;`;
 
       const html = `<span class="gap-wrapper">
@@ -541,10 +534,8 @@ Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zuneh
       }
     });
 
-    // Calculate percentage
     const percentage = Math.round((score / 20) * 100);
 
-    // Determine Message
     let message = "";
     if (percentage >= 90) {
       message = "Ausgezeichnet! Sehr starke Leistung!";
@@ -556,14 +547,12 @@ Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zuneh
       message = "Noch nicht gereicht. Üben Sie weiter!";
     }
 
-    // Update Result UI
     document.getElementById("result-user-name").innerText = "Ergebnis von " + participantName;
     document.getElementById("score-text").innerText = `${score} / 20`;
     document.getElementById("percent-text").innerText = `${percentage}%`;
     document.getElementById("message-text").innerText = message;
     document.getElementById("feedback-container").innerHTML = feedbackHTML;
 
-    // Switch View
     document.getElementById("test-screen").style.display = "none";
     document.getElementById("result-screen").style.display = "block";
     window.scrollTo(0, 0);
@@ -579,4 +568,5 @@ Darüber hinaus gewinnen moderne Alternativen wie Carsharing oder %L% (16) zuneh
 </script>
 
 </body>
-</html>
+      </html>
+      
