@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C-Test Übung - B1/B2</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+      color: #333;
+      padding: 20px;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    .timer {
+      font-weight: bold;
+      color: #e74c3c;
+      margin-bottom: 20px;
+    }
+    .text-box {
+      font-size: 18px;
+      background: #fdfdfd;
+      padding: 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      width: 70px;
+      font-size: 16px;
+      padding: 3px 6px;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      text-align: center;
+      margin: 0 2px;
+      font-weight: bold;
+    }
+    input.correct {
+      background-color: #2ecc71;
+      color: white;
+      border-color: #27ae60;
+    }
+    input.incorrect {
+      background-color: #e74c3c;
+      color: white;
+      border-color: #c0392b;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>C-Test Training (B1/B2)</h1>
+  <div class="timer">Zeit: 5 Minuten</div>
+
+  <h3>Der Verlust des Lebensraums</h3>
+  
+  <div class="text-box" id="cTestForm">
+    Der globale Klimawandel hat in den letzten Jahrzehnten zu einer drastischen Veränderung vieler Ökosysteme geführt. 
+    Beson<input type="text" data-answer="ders"> (1) die Tierw<input type="text" data-answer="elt"> (2) in d<input type="text" data-answer="en"> (3) kälteren Regi<input type="text" data-answer="onen"> (4) der Er<input type="text" data-answer="de"> (5) leidet un<input type="text" data-answer="ter"> (6) den steig<input type="text" data-answer="enden"> (7) Temperaturen. 
+    Das schmel<input type="text" data-answer="zende"> (8) Meereis zwin<input type="text" data-answer="gt"> (9) viele Ar<input type="text" data-answer="ten"> (10) dazu, ne<input type="text" data-answer="ue"> (11) Lebensräume zu su<input type="text" data-answer="chen"> (12) oder ih<input type="text" data-answer="re"> (13) Verhaltensweisen anzu<input type="text" data-answer="passen"> (14). 
+    Wenn d<input type="text" data-answer="ie"> (15) globale Erwär<input type="text" data-answer="mung"> (16) ungebremst fortsc<input type="text" data-answer="hreitet"> (17), könnten man<input type="text" data-answer="che"> (18) Tierarten sc<input type="text" data-answer="hnell"> (19) in wen<input type="text" data-answer="igen"> (20) Jahrzehnten vollständig aussterben.
+  </div>
+
+  <button onclick="checkAnswers()">Auswerten (Cek Jawaban)</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function checkAnswers() {
+    const inputs = document.querySelectorAll('#cTestForm input');
+    let correctCount = 0;
+
+    inputs.forEach(input => {
+      const userAnswer = input.value.trim().toLowerCase();
+      const correctAnswer = input.getAttribute('data-answer').toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        input.className = 'correct';
+        correctCount++;
+      } else {
+        input.className = 'incorrect';
+      }
+    });
+
+    const total = inputs.length;
+    const scoreElement = document.getElementById('result');
+    scoreElement.innerText = `Ergebnis: ${correctCount} von ${total} richtig (${Math.round((correctCount/total)*100)}%)`;
+  }
+</script>
+
+</body>
+</html>
